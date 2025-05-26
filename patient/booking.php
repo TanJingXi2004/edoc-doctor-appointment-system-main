@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/animations.css">  
     <link rel="stylesheet" href="../css/main.css">  
     <link rel="stylesheet" href="../css/admin.css">
-        
+    <link rel="icon" href="../img/icons/favicon.ico" type="image/ico" sizes="16x16">      
     <title>Sessions</title>
     <style>
         .popup{
@@ -57,7 +57,7 @@ $username = $userfetch["pname"];
     
 
 
-    date_default_timezone_set('Asia/Kolkata');
+    date_default_timezone_set('Asia/Kuala_Lumpur');
 
     $today = date('Y-m-d');
 
@@ -259,7 +259,7 @@ $username = $userfetch["pname"];
                                                             Session Title: '.$title.'<br>
                                                             Session Scheduled Date: '.$scheduledate.'<br>
                                                             Session Starts : '.$scheduletime.'<br>
-                                                            Channeling fee : <b>LKR.2 000.00</b>
+                                                            Channeling fee : <b>RM 2.00</b>
 
                                                         </div>
                                                         <br>

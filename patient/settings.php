@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/admin.css">
         
 
-
+    <link rel="icon" href="../img/icons/favicon.ico" type="image/ico" sizes="16x16">  
     <title>Settings</title>
     <style>
         .dashbord-tables{
@@ -128,7 +128,7 @@
                                 </p>
                                 <p class="heading-sub12" style="padding: 0;margin: 0;">
                                     <?php 
-                                date_default_timezone_set('Asia/Kolkata');
+                                date_default_timezone_set('Asia/Kuala_Lumpur');
         
                                 $today = date('Y-m-d');
                                 echo $today;

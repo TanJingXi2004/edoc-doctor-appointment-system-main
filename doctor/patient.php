@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/animations.css">  
     <link rel="stylesheet" href="../css/main.css">  
     <link rel="stylesheet" href="../css/admin.css">
-        
+    <link rel="icon" href="../img/icons/favicon.ico" type="image/ico" sizes="16x16">      
     <title>Patients</title>
     <style>
         .popup{

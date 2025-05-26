@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/admin.css">
         
 
-
+    <link rel="icon" href="../img/icons/favicon.ico" type="image/ico" sizes="16x16">  
     <title>Settings</title>
     <style>
         .dashbord-tables{
