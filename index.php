@@ -282,9 +282,9 @@ FOR ANIMATION
 						<div class="desc">
 							<h4 class="mb-3">Easiest way around</h4>
 							<p class="paragraph">
-								One tap and a car comes directly to you. Hop in—your driver knows exactly where to go.
-								And
-								when you get there, just step out. Payment is completely seamless.
+								Quickly book appointments and find the right doctor 
+								— all in one place. We make your healthcare 
+								journey easier from the very first click.
 							</p>
 						</div>
 					</div>
@@ -295,9 +295,9 @@ FOR ANIMATION
 						<div class="desc">
 							<h4 class="mb-3">Anywhere, anytime</h4>
 							<p class="paragraph">
-								Daily commute. Errand across town. Early morning flight. Late night drinks. Wherever
-								you’re
-								headed, count on Uber for a ride—no reservations required.
+								Book appointments and find 
+								doctors at your convenience 
+								— 24/7, from any device.
 							</p>
 						</div>
 					</div>
@@ -308,9 +308,9 @@ FOR ANIMATION
 						<div class="desc">
 							<h4 class="mb-3">Track Your Health</h4>
 							<p class="paragraph">
-								Economy cars at everyday prices are always available. For special occasions, no occasion
-								at
-								all, or when you just a need a bit more room, call a black car or SUV.
+								Keep a close eye on your health journey 
+								with simple tools that let you book appointments 
+								and find trusted doctors whenever you need.
 							</p>
 						</div>
 					</div>
@@ -327,8 +327,8 @@ FOR ANIMATION
 							<div class="card-body">
 								<img src="https://img.icons8.com/officexs/80/000000/triangular-bandage.png">
 								<h5 class="card-title">Administrator</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional
-									content.
+								<p class="card-text">This function is for Admin 
+									Login
 								</p>
 								<a href="admin/index.php" class="btn btn-primary">Admin</a>
 							</div>
@@ -339,8 +339,8 @@ FOR ANIMATION
 							<div class="card-body">
 								<img src="https://img.icons8.com/officexs/80/000000/medical-doctor.png">
 								<h5 class="card-title">Doctor</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional
-									content.
+								<p class="card-text">This function is for Doctor 
+									Login
 								</p>
 								<a href="doctor/index.php" class="btn btn-primary">Doctor</a>
 							</div>
@@ -351,8 +351,8 @@ FOR ANIMATION
 							<div class="card-body">
 								<img src="img/patient.png">
 								<h5 class="card-title">Patient</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional
-									content.
+								<p class="card-text">This function is for Patient
+									Login
 								</p>
 								<a href="patient/index.php" class="btn btn-primary">Patient</a>
 							</div>
@@ -377,7 +377,7 @@ FOR ANIMATION
 					<div class="carousel-item">
 						<div class="avatar"><img
 								src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-7.png"></div>
-						<p>No one is better than Doctor Lee</p>
+						<p>No one is better than Doctor Loh</p>
 						<div class="quote">
 							<p><strong>- Rebecca Flex</strong><br>Patient</p>
 						</div>
