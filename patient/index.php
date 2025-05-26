@@ -253,10 +253,10 @@
                                                                     <?php    echo $appointmentrow ->num_rows  ?>
                                                                 </div><br>
                                                                 <div class="h3-dashboard" >
-                                                                    NewBooking &nbsp;&nbsp;
+                                                                    New Booking &nbsp;&nbsp;
                                                                 </div>
                                                         </div>
-                                                                <div class="btn-icon-back dashboard-icons" style="margin-left: 0px;background-image: url('../img/icons/book-hover.svg');"></div>
+                                                                <div class="btn-icon-back dashboard-icons" style="margin-left: 50px;background-image: url('../img/icons/book-hover.svg');"></div>
                                                     </div>
                                                     
                                                 </td>
@@ -267,11 +267,11 @@
                                                                 <div class="h1-dashboard">
                                                                     <?php    echo $schedulerow ->num_rows  ?>
                                                                 </div><br>
-                                                                <div class="h3-dashboard" style="font-size: 15px">
+                                                                <div class="h3-dashboard" style="font-size: 19px">
                                                                     Today Sessions
                                                                 </div>
                                                         </div>
-                                                                <div class="btn-icon-back dashboard-icons" style="background-image: url('../img/icons/session-iceblue.svg');"></div>
+                                                                <div class="btn-icon-back dashboard-icons" style="margin-left: 50px;background-image: url('../img/icons/session-iceblue.svg');"></div>
                                                     </div>
                                                 </td>
                                                 
