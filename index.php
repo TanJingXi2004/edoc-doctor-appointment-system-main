@@ -267,7 +267,7 @@ FOR ANIMATION
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
 				<h2 class="jumbotron-title">Your health is our piority</h2>
-				<p>This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+				<p> Always here to provide caring support whenever and wherever you need it.</p>
 			</div>
 		</div>
 
