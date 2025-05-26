@@ -327,8 +327,7 @@ FOR ANIMATION
 							<div class="card-body">
 								<img src="https://img.icons8.com/officexs/80/000000/triangular-bandage.png">
 								<h5 class="card-title">Administrator</h5>
-								<p class="card-text">This function is for Admin 
-									Login
+								<p class="card-text">Organizing care, empowering health — Administrator at your service.
 								</p>
 								<a href="admin/index.php" class="btn btn-primary">Admin</a>
 							</div>
@@ -339,8 +338,7 @@ FOR ANIMATION
 							<div class="card-body">
 								<img src="https://img.icons8.com/officexs/80/000000/medical-doctor.png">
 								<h5 class="card-title">Doctor</h5>
-								<p class="card-text">This function is for Doctor 
-									Login
+								<p class="card-text">Trusted doctors, committed to your health and healing.
 								</p>
 								<a href="doctor/index.php" class="btn btn-primary">Doctor</a>
 							</div>
@@ -351,8 +349,7 @@ FOR ANIMATION
 							<div class="card-body">
 								<img src="img/patient.png">
 								<h5 class="card-title">Patient</h5>
-								<p class="card-text">This function is for Patient
-									Login
+								<p class="card-text">Every patient matters—your health, our priority.
 								</p>
 								<a href="patient/index.php" class="btn btn-primary">Patient</a>
 							</div>
