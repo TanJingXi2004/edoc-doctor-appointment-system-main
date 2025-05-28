@@ -16,6 +16,10 @@
         .sub-table{
             animation: transitionIn-Y-bottom 0.5s;
         }
+        /* Add style for the edit button icon */
+        .button-icon.btn-edit {
+            background-image: url('../img/icons/edit.svg');
+        }
 </style>
 </head>
 <body>
@@ -175,7 +179,7 @@
                                     $row00=$list11->fetch_assoc();
                                     $sn=$row00["docname"];
                                     $id00=$row00["docid"];
-                                    echo "<option value=".$id00.">$sn</option><br/>";
+                                    echo "<option value='".$id00."'>".$sn."</option>"; // Corrected: removed <br/>, quoted value
                                 };
 
 
@@ -266,7 +270,7 @@
                                     
                                 </th>
                                 
-                                <th class="table-headin">
+                                <th class="table-headin" style="text-align:center;"> <!-- Centered Events header -->
                                     
                                     Events
                                     
@@ -306,7 +310,7 @@
                                     $scheduletime=$row["scheduletime"];
                                     $nop=$row["nop"];
                                     echo '<tr>
-                                        <td>  '.
+                                        <td>  '. // Added   for padding
                                         substr($title,0,30)
                                         .'</td>
                                         <td>
@@ -323,7 +327,9 @@
                                         <div style="display:flex;justify-content: center;">
                                         
                                         <a href="?action=view&id='.$scheduleid.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-view"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">View</font></button></a>
-                                          
+                                           <!-- Consistent spacing -->
+                                       <a href="?action=edit&id='.$scheduleid.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-edit"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">Edit</font></button></a>
+                                           <!-- Consistent spacing -->
                                        <a href="?action=drop&id='.$scheduleid.'&name='.urlencode($title).'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-delete"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">Remove</font></button></a>
                                         </div>
                                         </td>
@@ -350,7 +356,7 @@
     <?php
     
     if(isset($_GET["action"])){ // Check if action is set
-        $id = isset($_GET["id"]) ? $_GET["id"] : ''; // Check if id is set
+        $id = isset($_GET["id"]) ? $database->real_escape_string($_GET["id"]) : ''; // Sanitize ID
         $action=$_GET["action"];
         if($action=='add-session'){
 
@@ -396,7 +402,7 @@
                             <tr>
                                 <td class="label-td" colspan="2">
                                     <select name="docid" id="" class="box" required >
-                                    <option value="" disabled selected hidden>Choose Doctor Name from the list</option><br/>';
+                                    <option value="" disabled selected hidden>Choose Doctor Name from the list</option>'; // Removed <br/>
                                         
         
                                         $list11 = $database->query("select  * from  doctor order by docname asc;");
@@ -405,7 +411,7 @@
                                             $row00=$list11->fetch_assoc();
                                             $sn=$row00["docname"];
                                             $id00=$row00["docid"];
-                                            echo "<option value=".$id00.">$sn</option><br/>";
+                                            echo "<option value='".$id00."'>".$sn."</option>"; // Corrected: removed <br/>, quoted value
                                         };
         
         
@@ -474,7 +480,7 @@
                         <h2>Session Placed.</h2>
                         <a class="close" href="schedule.php">×</a>
                         <div class="content">
-                        '.substr($titleget,0,40).' was scheduled.<br><br>
+                        '.htmlentities(substr($titleget,0,40)).' was scheduled.<br><br>
                             
                         </div>
                         <div style="display: flex;justify-content: center;">
@@ -495,7 +501,7 @@
                         <h2>Are you sure?</h2>
                         <a class="close" href="schedule.php">×</a>
                         <div class="content">
-                            You want to delete this record<br>('.substr($nameget,0,40).').
+                            You want to delete this record<br>('.htmlentities(substr($nameget,0,40)).').
                             
                         </div>
                         <div style="display: flex;justify-content: center;">
@@ -508,7 +514,7 @@
             </div>
             '; 
         }elseif($action=='view'){
-            $sqlmain= "select schedule.scheduleid,schedule.title,doctor.docname,schedule.scheduledate,schedule.scheduletime,schedule.nop from schedule inner join doctor on schedule.docid=doctor.docid  where  schedule.scheduleid=$id";
+            $sqlmain= "select schedule.scheduleid,schedule.title,doctor.docname,schedule.scheduledate,schedule.scheduletime,schedule.nop from schedule inner join doctor on schedule.docid=doctor.docid  where  schedule.scheduleid='$id'"; // Added quotes for id
             $result= $database->query($sqlmain);
             $row=$result->fetch_assoc();
             $docname=$row["docname"];
@@ -521,7 +527,7 @@
             $nop=$row['nop'];
 
 
-            $sqlmain12= "select * from appointment inner join patient on patient.pid=appointment.pid inner join schedule on schedule.scheduleid=appointment.scheduleid where schedule.scheduleid=$id;";
+            $sqlmain12= "select * from appointment inner join patient on patient.pid=appointment.pid inner join schedule on schedule.scheduleid=appointment.scheduleid where schedule.scheduleid='$id';"; // Added quotes for id
             $result12= $database->query($sqlmain12);
             echo '
             <div id="popup1" class="overlay">
@@ -550,7 +556,7 @@
                             </tr>
                             <tr>
                                 <td class="label-td" colspan="2">
-                                    '.$title.'<br><br>
+                                    '.htmlentities($title).'<br><br>
                                 </td>
                                 
                             </tr>
@@ -561,7 +567,7 @@
                             </tr>
                             <tr>
                                 <td class="label-td" colspan="2">
-                                '.$docname.'<br><br>
+                                '.htmlentities($docname).'<br><br>
                                 </td>
                             </tr>
                             <tr>
@@ -571,7 +577,7 @@
                             </tr>
                             <tr>
                                 <td class="label-td" colspan="2">
-                                '.$scheduledate.'<br><br>
+                                '.htmlentities($scheduledate).'<br><br>
                                 </td>
                             </tr>
                             <tr>
@@ -581,7 +587,7 @@
                             </tr>
                             <tr>
                                 <td class="label-td" colspan="2">
-                                '.$scheduletime.'<br><br>
+                                '.htmlentities($scheduletime).'<br><br>
                                 </td>
                             </tr>
                             <tr>
@@ -622,11 +628,11 @@
                 
                 
                                          
-                                         $result_app = $database->query($sqlmain12); // Use a different variable name for this result
+                                         $result_app = $database->query($sqlmain12); 
                 
                                          if($result_app->num_rows==0){
                                              echo '<tr>
-                                             <td colspan="4"> <!-- Changed colspan to 4 -->
+                                             <td colspan="4"> 
                                              <br><br><br><br>
                                              <center>
                                              <img src="../img/notfound.svg" width="25%">
@@ -640,8 +646,8 @@
                                              
                                          }
                                          else{
-                                         for ( $x=0; $x<$result_app->num_rows;$x++){ // Use the new variable here
-                                             $row_app=$result_app->fetch_assoc(); // Use the new variable here
+                                         for ( $x=0; $x<$result_app->num_rows;$x++){ 
+                                             $row_app=$result_app->fetch_assoc(); 
                                              $apponum=$row_app["apponum"];
                                              $pid=$row_app["pid"];
                                              $pname=$row_app["pname"];
@@ -649,18 +655,18 @@
                                              
                                              echo '<tr style="text-align:center;">
                                                 <td>
-                                                '.substr($pid,0,15).'
+                                                '.htmlentities(substr($pid,0,15)).'
                                                 </td>
                                                  <td style="font-weight:600;padding:25px">'.
                                                  
-                                                 substr($pname,0,25)
+                                                 htmlentities(substr($pname,0,25))
                                                  .'</td >
                                                  <td style="text-align:center;font-size:23px;font-weight:500; color: var(--btnnicetext);">
-                                                 '.$apponum.'
+                                                 '.htmlentities($apponum).'
                                                  
                                                  </td>
                                                  <td>
-                                                 '.substr($ptel,0,25).'
+                                                 '.htmlentities(substr($ptel,0,25)).'
                                                  </td>
                                                  
                                                  
@@ -688,7 +694,7 @@
             </div>
             </div>
             ';  
-        }elseif($action=='schedule-conflict'){ // New elseif block for schedule conflict
+        }elseif($action=='schedule-conflict'){ 
             $doctor_name = isset($_GET["doctor"]) ? urldecode($_GET["doctor"]) : "The selected doctor";
             $conflict_date = isset($_GET["date"]) ? $_GET["date"] : "the selected date";
             $conflict_time = isset($_GET["time"]) ? $_GET["time"] : "the selected time";
@@ -700,7 +706,7 @@
                         <h2 style="color:red;">Schedule Conflict!</h2>
                         <a class="close" href="schedule.php">×</a>
                         <div class="content">
-                        '. $doctor_name .' already has a session scheduled on <br><b>'. $conflict_date .'</b> at <b>'. $conflict_time .'</b>.<br><br>
+                        '. htmlentities($doctor_name) .' already has a session scheduled on <br><b>'. htmlentities($conflict_date) .'</b> at <b>'. htmlentities($conflict_time) .'</b>.<br><br>
                         Please choose a different time or date.
                         </div>
                         <div style="display: flex;justify-content: center;">
@@ -713,6 +719,186 @@
             </div>
             ';
         }
+        // START: NEW CODE FOR EDIT FUNCTIONALITY
+        elseif($action=='edit'){
+            $sql_edit = "SELECT * FROM schedule WHERE scheduleid='$id'"; // Added quotes for id
+            $result_edit = $database->query($sql_edit);
+            if($result_edit && $result_edit->num_rows == 1){ // Check if result is not false
+                $session_data = $result_edit->fetch_assoc();
+                $edit_title = $session_data['title'];
+                $edit_docid = $session_data['docid'];
+                $edit_nop = $session_data['nop'];
+                $edit_date = $session_data['scheduledate'];
+                $edit_time = $session_data['scheduletime'];
+        
+                echo '
+                <div id="popup1" class="overlay">
+                        <div class="popup">
+                        <center>
+                            <a class="close" href="schedule.php">×</a>
+                            <div style="display: flex;justify-content: center;">
+                            <div class="abc">
+                            <table width="80%" class="sub-table scrolldown add-doc-form-container" border="0">
+                            <tr>
+                                    <td class="label-td" colspan="2">'.
+                                       ""
+                                    .'</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Edit Session Details.</p><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                    <form action="edit-session.php" method="POST" class="add-new-form">
+                                        <input type="hidden" name="scheduleid" value="'.htmlentities($id).'">
+                                        <label for="title" class="form-label">Session Title : </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <input type="text" name="title" class="input-text" placeholder="Name of this Session" value="'.htmlentities($edit_title).'" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <label for="docid" class="form-label">Select Doctor: </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <select name="docid" id="" class="box" required >
+                                        <option value="" disabled hidden>Choose Doctor Name from the list</option>';
+        
+                                        $list_doctors = $database->query("select * from doctor order by docname asc;");
+                                        if($list_doctors) { // Check if query was successful
+                                            for ($y=0;$y<$list_doctors->num_rows;$y++){
+                                                $row_doc=$list_doctors->fetch_assoc();
+                                                $sn=$row_doc["docname"];
+                                                $id_doc=$row_doc["docid"];
+                                                $selected = ($id_doc == $edit_docid) ? "selected" : "";
+                                                echo "<option value='".htmlentities($id_doc)."' ".$selected.">".htmlentities($sn)."</option>";
+                                            }
+                                        }
+        
+                            echo     '       </select><br><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <label for="nop" class="form-label">Number of Patients/Appointment Numbers : </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <input type="number" name="nop" class="input-text" min="0" placeholder="The final appointment number for this session depends on this number" value="'.htmlentities($edit_nop).'" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <label for="date" class="form-label">Session Date: </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <input type="date" name="date" class="input-text" min="'.date('Y-m-d').'" value="'.htmlentities($edit_date).'" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <label for="time" class="form-label">Schedule Time: </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td" colspan="2">
+                                        <input type="time" name="time" class="input-text" placeholder="Time" value="'.htmlentities($edit_time).'" required><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="reset" value="Reset" class="login-btn btn-primary-soft btn" >     
+                                        <input type="submit" value="Update Session" class="login-btn btn-primary btn" name="editschedulesubmit">
+                                    </td>
+                                </tr>
+                                </form>
+                                </tr>
+                            </table>
+                            </div>
+                            </div>
+                        </center>
+                        <br><br>
+                </div>
+                </div>
+                ';
+            } else {
+                // Handle case where session ID is not found or DB error
+                echo '
+                <div id="popup1" class="overlay">
+                        <div class="popup">
+                        <center>
+                        <br><br>
+                            <h2>Error.</h2>
+                            <a class="close" href="schedule.php">×</a>
+                            <div class="content">
+                            Session not found for editing or database error.<br><br>
+                            </div>
+                            <div style="display: flex;justify-content: center;">
+                            <a href="schedule.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">  OK  </font></button></a>
+                            <br><br><br><br>
+                            </div>
+                        </center>
+                </div>
+                </div>
+                ';
+            }
+        }elseif($action=='session-updated'){
+            $titleget = isset($_GET["title"]) ? urldecode($_GET["title"]) : "Session";
+            echo '
+            <div id="popup1" class="overlay">
+                    <div class="popup">
+                    <center>
+                    <br><br>
+                        <h2>Session Updated.</h2>
+                        <a class="close" href="schedule.php">×</a>
+                        <div class="content">
+                        '.htmlentities(substr($titleget,0,40)).' was successfully updated.<br><br>
+                        </div>
+                        <div style="display: flex;justify-content: center;">
+                        <a href="schedule.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">  OK  </font></button></a>
+                        <br><br><br><br>
+                        </div>
+                    </center>
+            </div>
+            </div>
+            ';
+        }elseif($action=='schedule-conflict-edit'){ 
+            $edited_schedule_id = isset($_GET["id"]) ? $database->real_escape_string($_GET["id"]) : 'none'; // Sanitize ID
+            $doctor_name = isset($_GET["doctor"]) ? urldecode($_GET["doctor"]) : "The selected doctor";
+            $conflict_date = isset($_GET["date"]) ? $_GET["date"] : "the selected date";
+            $conflict_time = isset($_GET["time"]) ? $_GET["time"] : "the selected time";
+            echo '
+            <div id="popup1" class="overlay">
+                    <div class="popup">
+                    <center>
+                    <br><br>
+                        <h2 style="color:red;">Schedule Conflict!</h2>
+                        <a class="close" href="schedule.php">×</a>
+                        <div class="content">
+                        '. htmlentities($doctor_name) .' already has a session scheduled on <br><b>'. htmlentities($conflict_date) .'</b> at <b>'. htmlentities($conflict_time) .'</b>.<br><br>
+                        This conflicts with another existing session. Please choose a different time or date.
+                        </div>
+                        <div style="display: flex;justify-content: center;">
+                        <a href="schedule.php?action=edit&id='.$edited_schedule_id.'&error=conflict" class="non-style-link"><button  class="btn-primary-soft btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">  Try Again  </font></button></a>
+                        <a href="schedule.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">  OK  </font></button></a>
+                        <br><br><br><br>
+                        </div>
+                    </center>
+            </div>
+            </div>
+            ';
+        }
+        // END: NEW CODE FOR EDIT FUNCTIONALITY
     }
         
     ?>
